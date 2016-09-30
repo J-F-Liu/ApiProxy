@@ -1,0 +1,14 @@
+[package]
+name = "api_proxy"
+version = "0.1.0"
+authors = ["Junfeng Liu <china.liujunfeng@gmail.com>"]
+
+[dependencies]
+hyper = "0.9"
+nickel = "0.9.0"
+toml = "0.2.1"
+time = "*"
+
+[[bin]]
+name = "api_proxy"
+doc = false
