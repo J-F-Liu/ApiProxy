@@ -1,3 +1,6 @@
+[Authorization]
+AllowOrigin = ["http://192.168.2.204:8080", "http://www.yunluwang.com"]
+
 [[Api.GetIpInfo]]
 provider = "taobao"
 url = "http://ip.taobao.com/service/getIpInfo.php{?ip}"
