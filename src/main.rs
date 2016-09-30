@@ -11,6 +11,9 @@ use nickel::status::StatusCode::{self};
 extern crate toml;
 use toml::Value;
 
+extern crate uritemplate;
+use uritemplate::UriTemplate;
+
 extern crate time;
 use std::io::Read;
 
@@ -19,9 +22,14 @@ mod config;
 static GREETING : &str = "Starting API proxy...";
 
 fn process_api(detail: &toml::Table, query: &nickel::Query, response: &mut nickel::Response) -> (StatusCode, String) {
-    let mut params = detail["params"].as_slice().unwrap().into_iter().map(|param| query.get(param.as_str().unwrap()).unwrap());
-    // let url = format!(detail.url, params);
-    let url = detail["url"].as_str().unwrap().replace("{}", params.next().unwrap());
+    let params = detail["params"].as_slice().unwrap().into_iter().map(|param| param.as_str().unwrap());
+    let mut uri = UriTemplate::new(detail["url"].as_str().unwrap());
+    for param in params {
+        uri.set(param, query.get(param).unwrap());
+    }
+    let url = uri.build();
+    println!(" -> {}", url);
+
     let client = Client::new();
     let mut res = client.get(&url).send().unwrap();
     let mut buffer = String::new();
