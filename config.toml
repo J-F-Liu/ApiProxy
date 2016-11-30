@@ -1,19 +1,19 @@
-[Authorization]
-AllowOrigin = ["http://192.168.2.204:8080", "http://www.yunluwang.com"]
+[authorization]
+origins = ["http://192.168.2.204:3000", "http://www.yunluwang.com"]
 
-[[Api.GetIpInfo]]
+[[api.GetIpInfo]]
 provider = "taobao"
 url = "http://ip.taobao.com/service/getIpInfo.php{?ip}"
 params = ["ip"]
 format = "json"
 
-[[Api.GetIpInfo]]
+[[api.GetIpInfo]]
 provider = "sina"
 url = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json{&ip}"
 params = ["ip"]
 format = "json"
 
-[[Api.GetIpInfo]]
+[[api.GetIpInfo]]
 provider = "pconline"
 url = "http://whois.pconline.com.cn/ipJson.jsp?json=true{&ip}"
 params = ["ip"]
