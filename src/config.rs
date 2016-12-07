@@ -32,7 +32,8 @@ pub struct ApiCollection {
 
 pub fn load_config() -> ApiCollection {
     let mut input = String::new();
-    let config_file = env::current_dir().unwrap().join("config.toml");
+    let config_file = env::current_dir().unwrap().join("config/config.toml");
+    println!("Load {}", config_file.display());
 
     File::open(&config_file).and_then(|mut f| {
         f.read_to_string(&mut input)
