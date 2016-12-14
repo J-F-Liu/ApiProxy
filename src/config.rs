@@ -9,8 +9,6 @@ use std::fs::File;
 use std::env;
 use std::io::prelude::*;
 
-extern crate rustc_serialize;
-
 #[derive(Serialize, Deserialize, Debug, RustcDecodable)]
 pub struct  Authorization {
     pub origins: Vec<String>
@@ -32,7 +30,7 @@ pub struct ApiCollection {
 
 pub fn load_config() -> ApiCollection {
     let mut input = String::new();
-    let config_file = env::current_dir().unwrap().join("config/config.toml");
+    let config_file = env::current_dir().unwrap().join("config/apis.toml");
     println!("Load {}", config_file.display());
 
     File::open(&config_file).and_then(|mut f| {

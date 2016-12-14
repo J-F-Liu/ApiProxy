@@ -9,9 +9,10 @@ extern crate hyper;
 use hyper::client::Client;
 use hyper::header::{AccessControlAllowOrigin, ContentType, Origin};
 
-#[macro_use] extern crate nickel;
+#[macro_use]
+extern crate nickel;
 use nickel::{Nickel, QueryString, HttpRouter};
-use nickel::status::StatusCode::{self};
+use nickel::status::StatusCode;
 
 extern crate uritemplate;
 use uritemplate::UriTemplate;
@@ -20,9 +21,9 @@ extern crate time;
 use std::io::Read;
 
 mod config;
-use config::{ApiInfo};
+use config::ApiInfo;
 
-static GREETING : &str = "Starting API proxy...";
+static GREETING: &str = "Starting API proxy...";
 
 fn process_api(api: &ApiInfo, query: &nickel::Query, response: &mut nickel::Response) -> (StatusCode, String) {
     let mut uri = UriTemplate::new(api.url.as_str());
@@ -40,7 +41,7 @@ fn process_api(api: &ApiInfo, query: &nickel::Query, response: &mut nickel::Resp
     if let Some(ref format) = api.format {
         let content_type = match format.as_str() {
             "json" => ContentType::json(),
-            _ => ContentType::html()
+            _ => ContentType::html(),
         };
         response.set(content_type);
     }

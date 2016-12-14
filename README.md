@@ -40,8 +40,19 @@ cargo run
 
 ## Build and run docker image
 ```
-alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder:nightly'
+git clone https://github.com/emk/rust-musl-builder.git
+cd rust-musl-builder
+docker build --build-arg TOOLCHAIN=nightly -t rust-musl-builder .
+alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src rust-musl-builder'
+cd ApiProxy
 rust-musl-builder cargo build --release
-docker build -t api_proxy .
-docker run -v "$(pwd)/config":/ApiProxy/config -p 6767:6767 api_proxy
+docker build -t apiproxy .
+docker run -v "$(pwd)/config":/ApiProxy/config -p 6767:6767 apiproxy
 ```
+
+## Pull from docker hub
+
+```
+docker pull liujf/apiproxy
+```
+
