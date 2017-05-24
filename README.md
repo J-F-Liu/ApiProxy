@@ -1,5 +1,7 @@
 # ApiProxy
 
+[![Build Status](https://travis-ci.org/J-F-Liu/ApiProxy.png)](https://travis-ci.org/J-F-Liu/ApiProxy)
+
 Proxy Web APIs to allow CORS(Cross-Origin Resource Sharing) access from Web Apps.
 
 ```
