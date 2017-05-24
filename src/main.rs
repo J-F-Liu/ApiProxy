@@ -1,9 +1,7 @@
-#![feature(static_in_const)]
 #![feature(proc_macro)]
 
 #[macro_use]
 extern crate serde_derive;
-extern crate rustc_serialize;
 
 extern crate hyper;
 use hyper::client::Client;

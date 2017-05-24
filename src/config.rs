@@ -9,12 +9,12 @@ use std::fs::File;
 use std::env;
 use std::io::prelude::*;
 
-#[derive(Serialize, Deserialize, Debug, RustcDecodable)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct  Authorization {
     pub origins: Vec<String>
 }
 
-#[derive(Serialize, Deserialize, Debug, RustcDecodable)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct  ApiInfo {
     pub provider: String,
     pub url: String,
@@ -22,7 +22,7 @@ pub struct  ApiInfo {
     pub format: Option<String>
 }
 
-#[derive(Serialize, Deserialize, Debug, RustcDecodable)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct ApiCollection {
     pub authorization: Authorization,
     pub api: BTreeMap<String, Vec<ApiInfo>>
@@ -38,7 +38,7 @@ pub fn load_config() -> ApiCollection {
     }).unwrap();
 
     // let deserialized: ApiCollection = serde_json::from_str(&input).unwrap();
-    let deserialized: ApiCollection = toml::decode_str(&input).unwrap();
+    let deserialized: ApiCollection = toml::from_str(&input).unwrap();
     // println!(" -> {:?}", deserialized);
     return deserialized;
 }
