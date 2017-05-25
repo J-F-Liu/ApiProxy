@@ -77,7 +77,7 @@ fn main() {
     println!("{}", GREETING);
 
     let mut server = Nickel::new();
-    let config = config::load_config();
+    let config = config::load_config().unwrap();
 
     for (name, apis) in config.api {
         let name = name.to_owned();
