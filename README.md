@@ -43,10 +43,9 @@ cargo run
 
 ## Build and run docker image
 ```
-git clone https://github.com/emk/rust-musl-builder.git
-cd rust-musl-builder
-docker build --build-arg TOOLCHAIN=nightly -t rust-musl-builder .
-alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src rust-musl-builder'
+docker pull ekidd/rust-musl-builder
+mkdir -p ~/.musl-builder/cargo-cache
+alias rust-musl-builder='docker run --rm -it -v ~/.musl-builder/cargo-cache:/home/rust/.cargo/registry -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
 cd ApiProxy
 rust-musl-builder cargo build --release
 docker build -t apiproxy .
