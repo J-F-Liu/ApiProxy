@@ -1,11 +1,11 @@
 [package]
 name = "api_proxy"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["Junfeng Liu <china.liujunfeng@gmail.com>"]
 
 [dependencies]
-hyper = "0.9"
-nickel = "0.9.0"
+hyper = "0.10"
+nickel = "0.10.0"
 uritemplate = "0.1.2"
 toml = "0.4.1"
 time = "*"
